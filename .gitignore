@@ -1,0 +1,29 @@
+# Applications
+*.app
+*.exe
+*.war
+
+# Large media files
+*.mp4
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv
+
+node_modules
+/server/public/hot
+/server/public/storage
+/server/storage/*.key
+/server/vendor
+/server/.env
+/server/.env.backup
+server.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/.idea
+/.vscode
+.history
