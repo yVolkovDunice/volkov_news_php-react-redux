@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $table = 'news';
+    protected $table = 'posts';
 
     protected $fillable = ['head', 'text', 'author_id', 'tags', 'image'];
 }
