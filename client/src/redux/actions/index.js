@@ -5,5 +5,5 @@ export const getPosts = () => ({
 });
 
 export const getUser = () => ({
-  type: actionTypes.POSTS_REQUESTED,
+  type: actionTypes.USER_REQUESTED,
 });

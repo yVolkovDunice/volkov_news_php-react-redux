@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PostCard from '../../components/PostCard/PostCard';
 
+import PostCard from '../../components/PostCard/PostCard';
 import { getPosts } from '../../redux/actions';
 
-import './main.css';
+import './styles.css';
 
 function Main() {
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './menu.css';
+import './styles.css';
 
 function Menu() {
   return (

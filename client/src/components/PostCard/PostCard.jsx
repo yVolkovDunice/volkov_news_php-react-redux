@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 
 import image from '../../assets/images/default.jpeg';
 
-import './postCard.css';
+import './styles.css';
 
 function PostCard({ post }) {
   const { head, text } = post;
