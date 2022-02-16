@@ -1,6 +1,7 @@
 import {
   POSTS_REQUESTED,
   POSTS_RECEIVED,
+  POSTS_REJECTED,
 } from '../constants';
 
 const initialState = {
@@ -9,20 +10,27 @@ const initialState = {
   news: [],
 };
 function postReducer(state = initialState, action = {}) {
-  const { response } = action;
+  const { response, error } = action;
   switch (action.type) {
     case POSTS_REQUESTED:
       return {
         ...state,
         loading: true,
-        error: null,
+        error: '',
       };
     case POSTS_RECEIVED:
       return {
         ...state,
         news: response,
-        loading: true,
-        error: null,
+        loading: false,
+        error: '',
+      };
+    case POSTS_REJECTED:
+      return {
+        ...state,
+        news: [],
+        loading: false,
+        error,
       };
     default:
       return state;

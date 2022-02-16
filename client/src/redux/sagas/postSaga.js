@@ -10,8 +10,10 @@ function* getPostSaga() {
   try {
     const { data: response } = yield api.get('/posts');
     yield put({ type: actionTypes.POSTS_RECEIVED, response });
-  } catch (error) {
-    yield put({ type: actionTypes.POSTS_REJECTED, error });
+  } catch (err) {
+    console.log('error', err.message);
+
+    yield put({ type: actionTypes.POSTS_REJECTED, error: err.message });
   }
 }
 export default function* watcherSaga() {
