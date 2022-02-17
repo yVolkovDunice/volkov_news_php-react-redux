@@ -20,13 +20,14 @@ function Main() {
   return (
     <div className="wrapper">
       <div className="posts">
+        {loading && <CircularProgress className="spinner" />}
         {!loading && !error && news.map((post) => (
           <PostCard
             post={post}
             key={post.id}
           />
         ))}
-        {loading && <CircularProgress className="spinner" />}
+        {!news.length && !loading && <Alert severity="info">Oops!!! no news yet.</Alert>}
         {error && !loading && <Alert severity="error">{error}</Alert>}
       </div>
     </div>

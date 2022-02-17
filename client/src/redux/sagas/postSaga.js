@@ -11,8 +11,6 @@ function* getPostSaga() {
     const { data: response } = yield api.get('/posts');
     yield put({ type: actionTypes.POSTS_RECEIVED, response });
   } catch (err) {
-    console.log('error', err.message);
-
     yield put({ type: actionTypes.POSTS_REJECTED, error: err.message });
   }
 }
