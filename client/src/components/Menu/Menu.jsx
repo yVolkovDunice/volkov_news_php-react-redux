@@ -6,7 +6,6 @@ function Menu() {
   return (
     <div className="menu">
       MENU
-      <img alt="" />
     </div>
   );
 }

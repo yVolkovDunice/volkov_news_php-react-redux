@@ -8,8 +8,8 @@ import api from '../../api/api';
 
 function* getPostSaga() {
   try {
-    const { data: response } = yield api.get('/posts');
-    yield put({ type: actionTypes.POSTS_RECEIVED, response });
+    const { data: payload } = yield api.get('/posts');
+    yield put({ type: actionTypes.POSTS_RECEIVED, payload });
   } catch (err) {
     yield put({ type: actionTypes.POSTS_REJECTED, error: err.message });
   }

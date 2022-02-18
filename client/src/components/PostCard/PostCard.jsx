@@ -1,5 +1,5 @@
 import React from 'react';
-import { shape } from 'prop-types';
+import { shape, string } from 'prop-types';
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -39,7 +39,10 @@ function PostCard({ post }) {
 }
 
 PostCard.propTypes = {
-  post: shape({}).isRequired,
+  post: shape({
+    head: string,
+    text: string,
+  }).isRequired,
 };
 
 export default PostCard;

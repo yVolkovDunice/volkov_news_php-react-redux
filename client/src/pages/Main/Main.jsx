@@ -11,7 +11,7 @@ import './styles.css';
 
 function Main() {
   const dispatch = useDispatch();
-  const { news, error, loading } = useSelector((state) => state.posts);
+  const { posts, error, isLoading } = useSelector((state) => state.posts);
 
   useEffect(() => {
     dispatch(getPosts());
@@ -20,15 +20,21 @@ function Main() {
   return (
     <div className="wrapper">
       <div className="posts">
-        {loading && <CircularProgress className="spinner" />}
-        {!loading && !error && news.map((post) => (
-          <PostCard
-            post={post}
-            key={post.id}
-          />
-        ))}
-        {!news.length && !loading && <Alert severity="info">Oops!!! no news yet.</Alert>}
-        {error && !loading && <Alert severity="error">{error}</Alert>}
+        {isLoading
+          ? (
+            <CircularProgress className="spinner" />
+          ) : (
+            <>
+              {error && <Alert severity="error">{error}</Alert>}
+              {!posts.length && <Alert severity="info">Oops!!! no news yet.</Alert>}
+              {!error && posts.map((post) => (
+                <PostCard
+                  post={post}
+                  key={post.id}
+                />
+              ))}
+            </>
+          )}
       </div>
     </div>
   );
