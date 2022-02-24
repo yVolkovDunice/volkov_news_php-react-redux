@@ -11,11 +11,31 @@ import './styles.css';
 
 function Main() {
   const dispatch = useDispatch();
-  const { posts, error, isLoading } = useSelector((state) => state.posts);
+  const toLowerCaseReplaceAll = ((str) => str.toLowerCase().replaceAll('ё', 'е'));
+
+  let filtratedPosts = [];
+
+  const {
+    posts, error, isLoading, filterType, searchData,
+  } = useSelector((state) => state.posts);
+
+  const makeFiltrated = (() => {
+    if (searchData) {
+      filtratedPosts = posts.filter((post) => (toLowerCaseReplaceAll(`${post[filterType]}`) === `${searchData}`));
+    } else {
+      filtratedPosts = posts;
+    }
+  });
 
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);
+
+  if (!!searchData && filterType === 'all') {
+    filtratedPosts = posts.filter((post) => (Object.values(post).some((item) => toLowerCaseReplaceAll(`${item}`).includes(`${searchData}`))));
+  } else {
+    makeFiltrated();
+  }
 
   return (
     <div className="wrapper">
@@ -26,8 +46,8 @@ function Main() {
           ) : (
             <>
               {error && <Alert severity="error">{error}</Alert>}
-              {!posts.length && <Alert severity="info">Oops!!! no news yet.</Alert>}
-              {!error && posts.map((post) => (
+              {!error && !filtratedPosts?.length && <Alert severity="info">Oops!!! no news yet.</Alert>}
+              {!error && filtratedPosts?.map((post) => (
                 <PostCard
                   post={post}
                   key={post.id}
@@ -39,4 +59,5 @@ function Main() {
     </div>
   );
 }
+
 export default Main;
