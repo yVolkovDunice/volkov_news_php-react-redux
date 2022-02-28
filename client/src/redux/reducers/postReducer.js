@@ -2,13 +2,18 @@ import {
   POSTS_REQUESTED,
   POSTS_RECEIVED,
   POSTS_REJECTED,
+  TOGGLE_FILTER,
+  CHANGE_SEARCH,
 } from '../constants';
 
 const initialState = {
   isLoading: false,
   error: null,
   posts: [],
+  filterType: 'all',
+  searchData: null,
 };
+
 function postReducer(state = initialState, action = {}) {
   const { payload, error } = action;
   switch (action.type) {
@@ -32,8 +37,19 @@ function postReducer(state = initialState, action = {}) {
         isLoading: false,
         error,
       };
+    case TOGGLE_FILTER:
+      return {
+        ...state,
+        filterType: payload,
+      };
+    case CHANGE_SEARCH:
+      return {
+        ...state,
+        searchData: payload,
+      };
     default:
       return state;
   }
 }
+
 export default postReducer;
