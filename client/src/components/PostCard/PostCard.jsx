@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { shape, string } from 'prop-types';
 
 import Card from '@mui/material/Card';
@@ -45,4 +45,4 @@ PostCard.propTypes = {
   }).isRequired,
 };
 
-export default PostCard;
+export default memo(PostCard);
