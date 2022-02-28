@@ -15,16 +15,16 @@ import './styles.css';
 function Search() {
   const dispatch = useDispatch();
   const [filterType, setFilterType] = useState('all');
-  const [searchData, setSearchData] = useState('all');
+  const [searchData, setSearchData] = useState('');
 
-  const handleChange = (event) => {
-    setFilterType(event.target.value);
-    dispatch(toggleFilterState(event.target.value));
+  const handleChange = ({ target: { value } }) => {
+    setFilterType(value);
+    dispatch(toggleFilterState(value));
   };
 
-  const searchDataChange = (event) => {
-    setSearchData(event.target.value);
-    dispatch(changeSearchData(event.target.value));
+  const searchDataChange = ({ target: { value } }) => {
+    setSearchData(value);
+    dispatch(changeSearchData(value));
   };
 
   return (

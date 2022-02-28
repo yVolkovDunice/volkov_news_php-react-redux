@@ -11,13 +11,17 @@ import './styles.css';
 
 function Main() {
   const dispatch = useDispatch();
-  const toLowerCaseReplaceAll = ((str) => str.toLowerCase().replaceAll('ё', 'е'));
+  const {
+    posts,
+    error,
+    isLoading,
+    filterType,
+    searchData,
+  } = useSelector((state) => state.posts);
 
   let filtratedPosts = [];
 
-  const {
-    posts, error, isLoading, filterType, searchData,
-  } = useSelector((state) => state.posts);
+  const toLowerCaseReplaceAll = ((str) => str.toLowerCase().replaceAll('ё', 'е'));
 
   const makeFiltrated = (() => {
     if (searchData) {
@@ -27,15 +31,16 @@ function Main() {
     }
   });
 
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
-
   if (!!searchData && filterType === 'all') {
-    filtratedPosts = posts.filter((post) => (Object.values(post).some((item) => toLowerCaseReplaceAll(`${item}`).includes(`${searchData}`))));
+    filtratedPosts = posts.filter((post) => (
+      Object.values(post).some((item) => toLowerCaseReplaceAll(`${item}`).includes(`${searchData}`))));
   } else {
     makeFiltrated();
   }
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
 
   return (
     <div className="wrapper">
