@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CircularProgress from '@mui/material/CircularProgress';
@@ -23,20 +23,20 @@ function Main() {
 
   const toLowerCaseReplaceAll = ((str) => str.toLowerCase().replaceAll('ё', 'е'));
 
-  const makeFiltrated = (() => {
-    if (searchData) {
-      filtratedPosts = posts.filter((post) => (toLowerCaseReplaceAll(`${post[filterType]}`) === `${searchData}`));
+  const arrayFiltering = useCallback(() => {
+    let tempArr;
+    if (filterType === 'all') {
+      tempArr = posts.filter((post) => (
+        Object.values(post).some((item) => toLowerCaseReplaceAll(`${item}`).includes(`${searchData}`))));
     } else {
-      filtratedPosts = posts;
+      tempArr = posts.filter((post) => (toLowerCaseReplaceAll(`${post[filterType]}`) === `${searchData}`));
     }
-  });
+    return tempArr;
+  }, [posts, filterType, searchData]);
 
-  if (!!searchData && filterType === 'all') {
-    filtratedPosts = posts.filter((post) => (
-      Object.values(post).some((item) => toLowerCaseReplaceAll(`${item}`).includes(`${searchData}`))));
-  } else {
-    makeFiltrated();
-  }
+  filtratedPosts = !searchData
+    ? posts
+    : arrayFiltering();
 
   useEffect(() => {
     dispatch(getPosts());
