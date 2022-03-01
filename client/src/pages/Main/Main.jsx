@@ -29,7 +29,7 @@ function Main() {
       tempArr = posts.filter((post) => (
         Object.values(post).some((item) => toLowerCaseReplaceAll(`${item}`).includes(`${searchData}`))));
     } else {
-      tempArr = posts.filter((post) => (toLowerCaseReplaceAll(`${post[filterType]}`) === `${searchData}`));
+      tempArr = posts.filter((post) => (toLowerCaseReplaceAll(`${post[filterType]}`).includes(`${searchData}`)));
     }
     return tempArr;
   }, [posts, filterType, searchData]);

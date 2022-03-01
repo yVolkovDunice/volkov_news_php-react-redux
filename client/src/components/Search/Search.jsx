@@ -53,7 +53,7 @@ function Search() {
             <em>Везде</em>
           </MenuItem>
           <MenuItem value="tags">Поиск по тегам</MenuItem>
-          <MenuItem value="author_id">Поиск по автору</MenuItem>
+          <MenuItem value="user_id">Поиск по автору</MenuItem>
         </Select>
       </FormControl>
     </div>
