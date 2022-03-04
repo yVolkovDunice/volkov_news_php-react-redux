@@ -9,5 +9,9 @@ class Post extends Model
 {
     protected $table = 'posts';
 
-    protected $fillable = ['head', 'text', 'author_id', 'tags', 'image'];
+    protected $fillable = ['head', 'text', 'user_id', 'tags', 'image'];
+
+    public function author () {
+        return $this->belongsTo(user::class);
+    }
 }
