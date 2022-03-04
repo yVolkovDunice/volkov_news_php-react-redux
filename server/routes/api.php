@@ -16,7 +16,7 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::middleware('auth:passport')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
