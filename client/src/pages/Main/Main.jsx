@@ -5,6 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 
 import PostCard from '../../components/PostCard/PostCard';
+import Modal from '../../components/Modal/Modal';
 import { getPosts } from '../../redux/actions';
 
 import './styles.css';
@@ -44,6 +45,7 @@ function Main() {
 
   return (
     <div className="wrapper">
+      <Modal />
       <div className="posts">
         {isLoading
           ? (

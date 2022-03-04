@@ -17,3 +17,8 @@ export const changeSearchData = (payload) => ({
   type: actionTypes.CHANGE_SEARCH,
   payload,
 });
+
+export const toggleModal = (payload) => ({
+  type: actionTypes.TOGGLE_MODAL,
+  payload,
+});

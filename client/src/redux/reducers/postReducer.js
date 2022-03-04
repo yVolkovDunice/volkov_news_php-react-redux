@@ -4,6 +4,7 @@ import {
   POSTS_REJECTED,
   TOGGLE_FILTER,
   CHANGE_SEARCH,
+  TOGGLE_MODAL,
 } from '../constants';
 
 const initialState = {
@@ -12,6 +13,8 @@ const initialState = {
   posts: [],
   filterType: 'all',
   searchData: null,
+  modalOpen: false,
+  modalMode: 'login',
 };
 
 function postReducer(state = initialState, action = {}) {
@@ -46,6 +49,11 @@ function postReducer(state = initialState, action = {}) {
       return {
         ...state,
         searchData: payload,
+      };
+    case TOGGLE_MODAL:
+      return {
+        ...state,
+        modalOpen: payload,
       };
     default:
       return state;
