@@ -12,10 +12,6 @@ function Sing() {
     dispatch(toggleModal(true));
   };
 
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
   return (
     <Stack spacing={2} direction="row" sx={{ m: 1, minWidth: 80 }}>
       <Button variant="outlined" value="Login" onClick={handleClickOpen}>Login</Button>

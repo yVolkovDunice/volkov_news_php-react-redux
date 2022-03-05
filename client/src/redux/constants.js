@@ -6,3 +6,6 @@ export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 export const CHANGE_SEARCH = 'CHANGE_SEARCH';
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 export const MODAL_MODE = 'MODAL_MODE';
+export const SING_UP = 'SING_UP';
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
