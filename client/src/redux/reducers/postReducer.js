@@ -5,16 +5,18 @@ import {
   TOGGLE_FILTER,
   CHANGE_SEARCH,
   TOGGLE_MODAL,
+  MODAL_MODE,
 } from '../constants';
 
 const initialState = {
+  auth: null,
   isLoading: false,
   error: null,
   posts: [],
   filterType: 'all',
   searchData: null,
   modalOpen: false,
-  modalMode: 'login',
+  modalModeState: 'Login',
 };
 
 function postReducer(state = initialState, action = {}) {
@@ -54,6 +56,11 @@ function postReducer(state = initialState, action = {}) {
       return {
         ...state,
         modalOpen: payload,
+      };
+    case MODAL_MODE:
+      return {
+        ...state,
+        modalModeState: payload,
       };
     default:
       return state;

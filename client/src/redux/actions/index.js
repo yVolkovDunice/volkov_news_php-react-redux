@@ -22,3 +22,8 @@ export const toggleModal = (payload) => ({
   type: actionTypes.TOGGLE_MODAL,
   payload,
 });
+
+export const modalMode = (payload) => ({
+  type: actionTypes.MODAL_MODE,
+  payload,
+});

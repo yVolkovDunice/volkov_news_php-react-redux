@@ -5,3 +5,4 @@ export const USER_REQUESTED = 'USER_REQUESTED';
 export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 export const CHANGE_SEARCH = 'CHANGE_SEARCH';
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
+export const MODAL_MODE = 'MODAL_MODE';
