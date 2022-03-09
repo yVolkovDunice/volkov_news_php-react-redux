@@ -27,3 +27,17 @@ export const modalMode = (payload) => ({
   type: actionTypes.MODAL_MODE,
   payload,
 });
+
+export const authRegister = (payload) => ({
+  type: actionTypes.SING_UP_REQUESTED,
+  payload,
+});
+
+export const authLogin = (payload) => ({
+  type: actionTypes.LOGIN_REQUESTED,
+  payload,
+});
+
+export const authLogout = () => ({
+  type: actionTypes.LOGOUT,
+});

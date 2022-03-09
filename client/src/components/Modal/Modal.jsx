@@ -6,77 +6,74 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogContentText,
-  TextField,
-  DialogActions,
-  Tabs,
-  Tab,
-  Box,
+  // DialogContentText,
+  // TextField,
+  // DialogActions,
+  // Tabs,
+  // Tab,
+  // Box,
 } from '@mui/material';
+import { Formik, Field, Form } from 'formik';
 
-import { toggleModal, modalMode } from '../../redux/actions';
+import { toggleModal, authRegister, authLogin } from '../../redux/actions';
 
 function Modal() {
-  const { modalOpen, modalModeState } = useSelector((state) => state.posts);
+  const { modalOpen, modalModeState, error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const handleClose = () => {
     dispatch(toggleModal(false));
   };
 
-  const handleChange = (event, newValue) => {
-    dispatch(modalMode(newValue));
+  console.log('modal', error);
+
+  const handleChange = (values) => {
+    if (modalModeState === 'Sing up') {
+      dispatch(authRegister(values));
+    } else if (modalModeState === 'Login') {
+      dispatch(authLogin(values));
+    }
   };
 
   return (
     <Dialog open={modalOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
       <DialogTitle id="form-dialog-title">{modalModeState}</DialogTitle>
 
-      <Box sx={{ width: '100%' }}>
-        <Tabs
-          value={modalModeState}
-          onChange={handleChange}
-          aria-label="wrapped label tabs example"
-        >
-          <Tab
-            value="Login"
-            label="Login"
-            wrapped
-          />
-          <Tab value="Sing up" label="Sing up" />
-        </Tabs>
-      </Box>
-
       <DialogContent sx={{ width: '500px' }}>
-        <DialogContentText>Log in</DialogContentText>
-        <TextField
-          autoFocus
-          margin="dense"
-          id="name"
-          label="Email Address"
-          type="email"
-          fullWidth
-        />
-        <TextField
-          margin="dense"
-          id="password"
-          label="Password"
-          type="password"
-          fullWidth
-        />
-        {modalModeState === 'Sing up' && (
-        <TextField
-          margin="dense"
-          id="confirmPassword"
-          label="Confirm password"
-          type="password"
-          fullWidth
-        />
-        )}
+        <Formik
+          initialValues={{
+            name: '',
+            email: '',
+            password: '',
+            url_avatar: 'someURL',
+          }}
+          onSubmit={handleChange}
+        >
+          <Form>
+            <div className="form">
+
+              {modalModeState === 'Sing up' && (<Field id="name" name="name" placeholder="Name" />)}
+
+              <Field
+                id="email"
+                name="email"
+                placeholder="email"
+                type="email"
+              />
+
+              <Field
+                id="password"
+                name="password"
+                placeholder="password"
+                type="password"
+              />
+              {error}
+              <button type="submit">Submit</button>
+            </div>
+          </Form>
+        </Formik>
       </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} color="primary">Cancel</Button>
-        <Button onClick={handleClose} color="primary">{modalModeState}</Button>
-      </DialogActions>
+      <Button onClick={handleClose} color="primary">Cancel</Button>
+      {/* <label htmlFor="name">{error}</label> */}
     </Dialog>
   );
 }
