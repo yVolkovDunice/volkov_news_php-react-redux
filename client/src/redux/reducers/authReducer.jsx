@@ -13,7 +13,6 @@ import {
 const initialState = {
   modalOpen: false,
   modalModeState: 'Login',
-  // auth: null,
   isLoading: false,
   error: null,
   registerData: {},
@@ -27,6 +26,7 @@ function authReducer(state = initialState, action = {}) {
       return {
         ...state,
         modalOpen: payload,
+        error: null,
       };
     case MODAL_MODE:
       return {
@@ -81,6 +81,7 @@ function authReducer(state = initialState, action = {}) {
       return {
         ...state,
         authorizedUser: false,
+        error: null,
       };
     default:
       return state;

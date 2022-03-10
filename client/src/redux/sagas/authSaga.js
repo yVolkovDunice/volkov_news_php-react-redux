@@ -9,7 +9,6 @@ import api from '../../api/api';
 function* authRegisterSaga({ payload }) {
   try {
     const { data } = yield api.post('/register', payload);
-    console.log(data.errors);
     if (data.errors) {
       throw new Error(data.errors);
     } else {
@@ -19,7 +18,6 @@ function* authRegisterSaga({ payload }) {
       }
     }
   } catch (error) {
-    console.log(error);
     yield put({ type: actionTypes.SING_UP_REJECTED, error: error.message });
   }
 }
