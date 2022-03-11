@@ -1,4 +1,6 @@
 .menu {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   background-color: rgba(204, 86, 40, 0.548);
 }
