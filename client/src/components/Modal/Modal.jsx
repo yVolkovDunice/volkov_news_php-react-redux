@@ -1,34 +1,35 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Formik, Field, Form } from 'formik';
+
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import Button from '@mui/material/Button';
-import { Formik, Field, Form } from 'formik';
 
-import { toggleModal, authRegister, authLogin } from '../../redux/actions';
+import { toggleModal, signUpAction, loginAction } from '../../redux/actions';
 
 import './styles.css';
 
 function Modal() {
-  const { modalOpen, modalModeState, error } = useSelector((state) => state.auth);
+  const { modalIsOpen, modalMode, error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const handleClose = () => {
     dispatch(toggleModal(false));
   };
 
   const handleChange = (values) => {
-    if (modalModeState === 'Sing up') {
-      dispatch(authRegister(values));
-    } else if (modalModeState === 'Login') {
-      dispatch(authLogin(values));
+    if (modalMode === 'Sing up') {
+      dispatch(signUpAction(values));
+    } else if (modalMode === 'Login') {
+      dispatch(loginAction(values));
     }
   };
 
   return (
-    <Dialog open={modalOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
-      <DialogTitle id="form-dialog-title">{modalModeState}</DialogTitle>
+    <Dialog open={modalIsOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <DialogTitle id="form-dialog-title">{modalMode}</DialogTitle>
       <DialogContent sx={{ width: '75%' }}>
         {error}
         <Formik
@@ -45,7 +46,7 @@ function Modal() {
           }) => (
             <Form>
               <div className="form">
-                {modalModeState === 'Sing up' && (
+                {modalMode === 'Sing up' && (
                 <Field
                   id="name"
                   name="name"
@@ -66,9 +67,9 @@ function Modal() {
                 />
                 <Button
                   type="submit"
-                  disabled={(modalModeState === 'Sing up' ? !values.name : false || !values.email) || !values.password}
+                  disabled={(modalMode === 'Sing up' ? !values.name : false || !values.email) || !values.password}
                 >
-                  {modalModeState}
+                  {modalMode}
                 </Button>
               </div>
             </Form>

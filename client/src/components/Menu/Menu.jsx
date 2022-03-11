@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Search from '../Search/Search';
-import Sing from '../Sing/Sing';
+import AuthNavigation from '../AuthNavigation/AuthNavigation';
 
 import './styles.css';
 
@@ -9,7 +9,7 @@ function Menu() {
   return (
     <div className="menu">
       <Search />
-      <Sing />
+      <AuthNavigation />
     </div>
   );
 }

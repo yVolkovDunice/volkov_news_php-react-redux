@@ -23,21 +23,21 @@ export const toggleModal = (payload) => ({
   payload,
 });
 
-export const modalMode = (payload) => ({
+export const changeModalMode = (payload) => ({
   type: actionTypes.MODAL_MODE,
   payload,
 });
 
-export const authRegister = (payload) => ({
+export const signUpAction = (payload) => ({
   type: actionTypes.SING_UP_REQUESTED,
   payload,
 });
 
-export const authLogin = (payload) => ({
+export const loginAction = (payload) => ({
   type: actionTypes.LOGIN_REQUESTED,
   payload,
 });
 
-export const authLogout = () => ({
+export const logoutAction = () => ({
   type: actionTypes.LOGOUT,
 });

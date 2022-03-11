@@ -17,6 +17,7 @@ class AuthController extends Controller
       'name' => 'required | string | max:250',
       'email' => 'required | string | email | unique:users',
       'password' => 'required | between:8, 255',
+      'url_avatar' => 'required',
     ]);
 
     if ($validator->fails()) {
@@ -34,7 +35,7 @@ class AuthController extends Controller
         return response()->json('registration failed', 500);
     }
 
-    return response()->json('registration succeeded', 201);
+    return response()->json($user, 201);
   }
 
   public function login(Request $request) {

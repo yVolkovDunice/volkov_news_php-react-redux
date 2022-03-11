@@ -11,12 +11,11 @@ import {
 } from '../constants';
 
 const initialState = {
-  modalOpen: false,
-  modalModeState: 'Login',
+  modalIsOpen: false,
+  modalMode: 'Login',
   isLoading: false,
   error: null,
-  registerData: {},
-  authorizedUser: Boolean(localStorage.getItem('token')),
+  userIsLogged: Boolean(localStorage.getItem('token')),
 };
 
 function authReducer(state = initialState, action = {}) {
@@ -25,15 +24,16 @@ function authReducer(state = initialState, action = {}) {
     case TOGGLE_MODAL:
       return {
         ...state,
-        modalOpen: payload,
+        modalIsOpen: payload,
         error: null,
       };
     case MODAL_MODE:
       return {
         ...state,
-        modalModeState: payload,
+        modalMode: payload,
       };
     case SING_UP_REQUESTED:
+    case LOGIN_REQUESTED:
       return {
         ...state,
         isLoading: true,
@@ -42,45 +42,35 @@ function authReducer(state = initialState, action = {}) {
     case SING_UP_RECEIVED:
       return {
         ...state,
-        registerData: payload,
         isLoading: false,
-        modalOpen: false,
+        modalIsOpen: false,
         error: null,
       };
     case SING_UP_REJECTED:
       return {
         ...state,
-        registerData: {},
         isLoading: false,
         error,
-      };
-    case LOGIN_REQUESTED:
-      return {
-        ...state,
-        isLoading: true,
-        error: null,
       };
     case LOGIN_RECEIVED:
       return {
         ...state,
-        registerData: {},
         isLoading: false,
-        modalOpen: false,
+        modalIsOpen: false,
         error: null,
-        authorizedUser: true,
+        userIsLogged: true,
       };
     case LOGIN_REJECTED:
       return {
         ...state,
         isLoading: false,
-        registerData: {},
-        authorizedUser: false,
+        userIsLogged: false,
         error,
       };
     case LOGOUT:
       return {
         ...state,
-        authorizedUser: false,
+        userIsLogged: false,
         error: null,
       };
     default:
