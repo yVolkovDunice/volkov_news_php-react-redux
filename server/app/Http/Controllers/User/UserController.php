@@ -24,10 +24,6 @@ class UserController extends Controller
             return response($error);
         }
          $userPosts = User::find($user->id)->posts;
-            // return response(['user'=> $user, 'userPosts'=> $userPosts]);
-        // $user = $request->user();
-        // $userPosts = User::find($user->id)->posts;
-        // return response(['user'=> $user, '$userPosts'=> $userPosts]);
         return response($request);
     }
 
