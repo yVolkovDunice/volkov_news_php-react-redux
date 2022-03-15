@@ -23,8 +23,9 @@ class UserController extends Controller
         } catch (Exception $error) {
             return response($error);
         }
+         $user = $request->user();
          $userPosts = User::find($user->id)->posts;
-        return response($request);
+         return response(['user'=> $user, '$userPosts'=> $userPosts]);
     }
 
     /**
